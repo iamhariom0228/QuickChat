@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Messages from "./Messages";
 import MessageInput from "./MessageInput";
 import { TbMessages } from "react-icons/tb";
+import useConversation from "../../zustand/useConversation";
 
 const MessageContainer = () => {
-  const noChatSelected = true;
+  const { selectedConversation, setSelectedConversation } = useConversation();
+
+  useEffect(() => {
+    //cleanup function to remove selected conversation when component unmounts
+    return () => setSelectedConversation(null);
+  }, [setSelectedConversation]);
+
   return (
     <div className="md:min-w-[450px] flex flex-col">
-      {noChatSelected ? (
+      {!selectedConversation ? (
         <NoChatSelected />
       ) : (
         <>
           <div className="bg-slate-500 px-4 py-2 mb-2">
             <span className="label-text text-md">To: </span>
-            <span className="text-gray-900 font-bold">Hariom Sharma</span>
+            <span className="text-gray-900 font-bold">{selectedConversation.name}</span>
           </div>
 
           <Messages />
