@@ -7,8 +7,7 @@ import Connection from './database/db.js';
 import authRoutes from './routes/auth.js';
 import messageRoutes from './routes/message.js';
 import userRoutes from './routes/user.js';
-
-const app = express();
+import { app, server } from './socket/socket.js';
 
 const PORT = process.env.PORT;
 
@@ -29,7 +28,7 @@ app.use('/api/users', userRoutes);
 Connection();
 
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
 });
 
