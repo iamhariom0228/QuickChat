@@ -23,14 +23,14 @@ const useLogin = () => {
             });
 
             const data = await res.json();
-            console.log("API response:", data); // Log the entire response
+            // console.log("API response:", data); // Log the entire response
 
             if (!res.ok) {
                 throw new Error(data.data || "Login failed");
             }
 
             const user = data.data; // Extract user from data field
-            console.log("User data:", user);
+            // console.log("User data:", user);
 
             // Local storage set item
             localStorage.setItem("chat-user", JSON.stringify(user));
