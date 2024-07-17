@@ -5,11 +5,13 @@ import { toast } from "react-hot-toast";
 const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, selectedConversation } = useConversation();
-  console.log(messages)
+  // console.log(messages)
   const sendMessage = async (message) => {
     setLoading(true);
 
     try {
+      console.log(message);
+      console.log(selectedConversation._id);
       const res = await fetch(
         `/api/messages/send/${selectedConversation._id}`,
         {
@@ -22,9 +24,9 @@ const useSendMessage = () => {
       );
 
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       if (!res.ok) throw new Error(data.error);
-      console.log(data);
+      // console.log(data);
       
       const newmessages = messages;
       newmessages.push(data);

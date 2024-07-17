@@ -1,11 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import Message from "./Message";
 import useGetMessages from "../../hooks/useGetMessages";
-import { set } from "mongoose";
+import useListenMessages from "../../hooks/useListenMessages";
+import useConversation from "../../zustand/useConversation";
 
 const Messages = () => {
   const { loading, messages } = useGetMessages();
-
+  const { selectedConversation } = useConversation();
+  useListenMessages(selectedConversation._id);
   const lastMessageRef = useRef(null);
 
   useEffect(() => {

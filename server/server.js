@@ -10,7 +10,7 @@ import userRoutes from './routes/user.js';
 import { app, server } from './socket/socket.js';
 
 const PORT = process.env.PORT;
-
+  
 dotenv.config();
 
 app.use(express.json()); //to parse the incoming requests with JSON payloads from req.body
